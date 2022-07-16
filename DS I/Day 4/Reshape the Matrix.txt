@@ -1,0 +1,17 @@
+class Solution {
+public:
+    vector<vector<int>> matrixReshape(vector<vector<int>>& mat, int r, int c) {
+        int x = mat.size(), y = mat[0].size();
+        if ((x * y) == (r * c)) {
+            vector<int> temp(c);
+            vector<vector<int>> res(r, temp);
+            int i = 0;
+            while (i < (x * y)) {
+                res[i / c][i % c] = mat[i / y][i % y];
+                i++;
+            }
+            return res;
+        }
+        return mat;
+    }
+};
