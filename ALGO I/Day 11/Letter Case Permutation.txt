@@ -1,0 +1,40 @@
+class Solution {
+public:
+    void generateString(string s, vector<string> &ans, string curr, int index) {
+    
+    
+    if(index == s.length()) {
+        ans.push_back(curr);
+        return;
+    }
+    char currChar = s[index];
+    curr+=currChar;
+    generateString(s, ans, curr, index+1);
+    
+    if(currChar >= 48 && currChar <= 57) {
+        return;
+    }
+    
+    if(currChar>=65 && currChar<=90) {
+        curr.pop_back();
+        curr+= tolower(currChar);
+    } else {
+        curr.pop_back();
+        curr+= toupper(currChar);
+    }
+    generateString(s, ans, curr, index+1);
+}
+
+
+
+
+
+vector<string> letterCasePermutation(string s) {
+    
+    vector<string> ans;
+    string curr="";
+    generateString(s, ans, curr, 0);
+    return ans;
+    
+}
+};
