@@ -1,0 +1,30 @@
+class Solution {
+public:
+    vector<vector<int>> updateMatrix(vector<vector<int>>& mat) {
+        vector<int> p={0,1,0,-1,0};
+    vector<vector<int>> updateMatrix(vector<vector<int>>& mat) {
+        int m=mat.size(),n=mat[0].size();
+        vector<vector<int>> dis(m,vector<int>(n,INT_MAX));
+        queue<pair<int,int>> q;
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(!mat[i][j]){
+                    dis[i][j]=0;
+                    mat[i][j]=2;
+                    q.push({i,j});
+                }
+            }
+        }
+        while(!q.empty()){
+            int x=q.front().first,y=q.front().second;
+            for(int i=0;i<4;i++){
+                int a=x+p[i],b=y+p[i+1];
+                if(a<0 or b<0 or a==m or b==n or mat[a][b]==2) continue;
+                dis[a][b]=min(dis[a][b],1+dis[x][y]);
+                q.push({a,b});
+                mat[a][b]=2;
+            }q.pop();
+        }
+        return dis;
+    }
+};
