@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int maxAreaOfIsland(vector<vector<int>>& grid) {
+        if(i >= 0 and i < grid.size() and j >= 0 and j < grid[0].size() and grid[i][j] == 1){  //checking boundary condition
+            grid[i][j]=0;                                                                       //mark current island as visited
+            return 1 + aoi(grid, i+1, j) + aoi(grid, i-1, j) + aoi(grid, i, j+1) + aoi(grid, i, j-1);     //apply dfs in all four directions
+            
+        }
+        return 0;
+    }
+    int maxAreaOfIsland(vector<vector<int>>& grid) {
+        int maxi = 0;                                                                           //initializing maximum area with 0
+        for(int i = 0; i < grid.size(); i ++){
+            for ( int j = 0; j < grid[0].size(); j ++){
+                if(grid[i][j] == 1) maxi = max(maxi, aoi(grid, i, j));         //calling aoi function when current land is island
+            }
+        }
+        return maxi;
+    }
+};
