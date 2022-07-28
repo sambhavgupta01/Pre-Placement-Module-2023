@@ -1,0 +1,42 @@
+class Solution {
+public:
+    vector<vector<int>> generateMatrix(int n) {
+        vector<vector<int>>v(n,vector<int>(n));
+        int x=1,r=0,c=0,fr=n-1,fc=n-1;
+        while(r<=fr && c<=fc){
+            if(r<=fr){
+                for(int i = c;i<=fc;i++)
+                   {
+                       v[r][i] = x;
+                       x++;
+                   }
+            }
+            r++;
+            if(c<=fc){
+                for(int i = r;i<=fr;i++)
+                   {
+                       v[i][fc] = x;
+                       x++;
+                   }
+            }
+            fc--;
+            if(r<=fr){
+                for(int i = fc;i>=c;i--)
+                   {
+                       v[fr][i] = x;
+                       x++;
+                   }
+            }
+            fr--;
+            if(c<=fc){
+                for(int i = fr;i>=r;i--)
+                   {
+                       v[i][c] = x;
+                       x++;
+                   }
+            }
+            c++;
+        }
+        return v;
+    }
+};
