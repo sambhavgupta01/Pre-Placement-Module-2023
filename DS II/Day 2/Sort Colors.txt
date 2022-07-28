@@ -1,0 +1,39 @@
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        int n;
+        n=nums.size();
+        int x=0,y=0,z=n-1;
+        while(y<=z){
+            
+            switch(nums[y]){
+                    
+                case 0:{
+                    int tmp=nums[x];
+                    nums[x]=nums[y];
+                    nums[y]=tmp;
+                    x++;
+                    y++;
+                    break;
+                }
+                    
+                    
+                case 1:{
+                    y++;
+                    break;
+                }
+                    
+                    
+                case 2:{
+                    int tamp=nums[y];
+                    nums[y]=nums[z];
+                    nums[z]=tamp;
+                    z--;
+                    break;
+                }
+            }
+            
+        }
+        
+    }
+};
