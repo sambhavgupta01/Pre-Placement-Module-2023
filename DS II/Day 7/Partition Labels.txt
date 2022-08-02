@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<int> partitionLabels(string s) {
+        vector<int> lastOccur(26);
+        vector<int> res;
+        for(int i = 0; i < s.size(); i++)
+        {
+            lastOccur[s[i]-'a'] = i;
+        }
+        
+        int si = 0;
+        int ei = 0;
+        for(int i = 0; i < s.size(); i++)
+        {
+            ei = max(ei,lastOccur[s[i] - 'a']);
+            if(ei == i)
+            {
+                res.push_back(ei-si+1);
+                si = ei+1;
+            }
+        }
+        return res;
+    }
+};
