@@ -1,0 +1,33 @@
+class Solution {
+public:
+    string addStrings(string num1, string num2) {
+        int i=size(num1)-1,j=size(num2)-1;
+        string res="";
+        int carry=0,x,y,sum;
+        while(i>=0 and j>=0){
+            x=num1[i]-'0';
+            y=num2[j]-'0';
+            sum=x+y+carry;
+            res=to_string(sum%10)+res;
+            carry=sum/10;
+            i--,j--;
+        }
+        while(i>=0){
+            x=num1[i]-'0';
+            sum=x+carry;
+            res=to_string(sum%10)+res;
+            carry=sum/10;
+            i--;
+        }
+        while(j>=0){
+            y=num2[j]-'0';
+            sum=y+carry;
+            res=to_string(sum%10)+res;
+            carry=sum/10;
+            j--;
+        }
+        if(carry)
+            res=to_string(carry)+res;
+        return res;
+    }
+};

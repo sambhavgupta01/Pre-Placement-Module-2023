@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int longestPalindrome(string s) {
+       int count_1=0,count_2=0;
+        map<char,int> m;
+        
+        for(auto a:s) {
+            m[a]++;
+        }
+        
+        for(auto a:m) {
+            if(a.second%2==0) {
+                count_2+=a.second;
+            } else {
+                count_1+=1;
+                count_2+=a.second-1;
+            }
+        }
+        
+        if(count_1>0) {
+            return count_2+1;
+        } else {
+            return count_2;
+        }
+    }
+};
